@@ -1,0 +1,74 @@
+Exercício 1 com o HUB:
+
+1. Verifique o fluxo das mensagens enviadas do pc0 e responda:
+
+a) A solicitação de eco (ping), enviada pela máquina de origem, é replicada para
+quantos hosts?
+Para todos os outros 5 hosts conectados ao HUB (PC1, PC2, PC3, PC4, PC5), com exceção da máquina de origem (PC0).
+
+b) Todos a recebem?
+Sim, todos os PCs (com excessão do PC0, que é o transmissor) receberam o ping.
+
+c) Algum host descarta a mensagem de solicitação de eco (ping)?
+O ping enviado do PC0 foi endereçado para o PC1, então apesar de todos receberem a mensagem, apenas o PC1 não descarta a solicitação.
+Então, sim, os demais PCs (PC2, PC3, PC4, PC5) descartaram, pois o pacote não é para eles.
+
+d) Quantas máquinas respondem à solicitação de eco (ping)?
+Apenas o PC1 responde à solicitação, pois ele é o destinatário correto.
+
+e) A resposta à solicitação de eco é enviada para quantos hosts?
+Novamente, o pacote é replicado para todas as máquinas, exceto a de origem (agora o PC1).
+
+f) Todos a recebem?
+Sim, os 5 PCs restantes recebem (PC0, PC2, PC3, PC4, PC5).
+
+g) Algum host descarta a mensagem de resposta da solicitação de eco (ping)?
+Sim, todas as máquinas (com exceção do PC0, o destinatário desta vez) descartam a resposta, pois ela não foi endereçada a elas.
+
+~
+
+Exercício 1 com o Switch:
+
+a) A solicitação de eco (ping), enviada pela máquina de origem, é replicada para
+quantos hosts?
+No primeiro envio, foi direcionado para todos os 5 outros PCs, exceto o de origem.
+
+b) Todos a recebem?
+Sim, todos receberam o ping.
+
+c) Algum host descarta a mensagem de solicitação de eco (ping)?
+O ping enviado do PC0 foi endereçado para o PC1, então apesar de todos receberem a mensagem, apenas o PC1 não descartou a solicitação.
+Então, sim, os demais PCs (PC2, PC3, PC4, PC5) descartaram, pois o pacote não é para eles.
+
+d) Quantas máquinas respondem à solicitação de eco (ping)?
+Apenas o PC1 responde.
+
+e) A resposta à solicitação de eco é enviada para quantos hosts?
+Desta vez, a resposta é enviada apenas apenas para o destinatário (PC0), pois a rede entendeu que a comunicação é apenas entre
+os PCs 0 e 1.
+
+f) Todos a recebem?
+Não, apenas o PC0.
+
+g) Algum host descarta a mensagem de resposta da solicitação de eco (ping)?
+Não, pois apenas a máquina correta recebeu a resposta e não foi necessário descartar.
+
+~
+
+2. Envie uma mensagem ping em broadcast (ping 200.1.2.255) e verifique quais hosts respondem.
+Na rede com o HUB, foram obtidas apenas 4 respostas, e que não eram de todos os PCs, pois algumas respostas consecutivas
+eram de hosts repitidos e fora de ordem.
+Já na rede com o Switch, a maioria dos hosts responderam, de forma ordenada e sem repetições consecutivas.  
+
+~
+
+3. Salve o arquivo, encerre o Cisco Packet Tracer e responda:
+
+h) Qual a diferença na atuação do hub e do switch?
+Com a utilização do HUB, ele replicou os dados sem olhar o destino e todas as máquinas receberam a mensagem, mesmo que não fosse endereçada para elas.
+Por esse motivo, aparenta ser menos eficiente.
+O Switch, apesar de também ter enviado o pacote para todas as máquinas na primeira solicitação, aprendeu a reconhecer os PCs que estão se comunicando e enviou
+a resposta apenas para a máquina correta. Por esse motivo, parece ser mais eficiente e seguro.
+
+i) Para que servem as mensagens STP usadas pelo Switch?
+Garantir que não ocorra loops na rede e, assim, evitar congestionamento ou perda de pacotes.

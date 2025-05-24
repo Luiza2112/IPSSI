@@ -1,0 +1,96 @@
+1. Teste as conexões de rede: 
+• Abra o prompt de comandos no PC0 e verifique o IP (ipconfig) 
+• Teste a conectividade com o restante da rede com o ping (em broadcast) 
+• ping 200.1.0.255 
+• Verifique se todas as máquinas de sua rede respondem e o TTL indicado.
+R: Sim, todas responderam, com TTL = 128 
+
+• Abra o prompt de comandos no PC5 e verifique o IP (ipconfig) 
+• Teste a conectividade com o restante da rede com o ping (em broadcast) 
+• ping 200.1.1.255 
+• Verifique se todas as máquinas de sua rede respondem e o TTL indicado.
+R: Sim, todas responderam, com TTL = 128 
+
+2. Teste a conexão entre as redes: 
+• Abra o prompt de comandos no PC0 e verifique o IP (ipconfig) 
+• Teste a conectividade com um host da outra rede 
+ping 200.1.1.100 
+• Verifique o parâmetro TTL. Há o decréscimo de uma unidade por termos um roteador, qual é?
+R: TTL = 126
+
+• Verifique o traçado da rota até o destino (tracert 200.1.1.100)
+• Verifique a listagem obtida e interprete o ocorrido.
+R: O pacote saiu do PC0 até o Router0 (200.1.0.1), passou pelo Router1 no processo (1.0.0.2)
+e depois chegou ao destino final (200.1.1.100).
+
+• Abra o prompt de comandos no PC5 e verifique o IP (ipconfig) 
+• Teste a conectividade com um host da outra rede (ping 200.1.0.100)
+• Verifique o parâmetro TTL. Há o decréscimo de uma unidade por termos um roteador, qual é?
+R: TTL = 126
+
+• Verifique o traçado da rota até o destino (tracert 200.1.0.100) 
+• Verifique a listagem obtida e interprete o ocorrido.
+R: O pacote saiu do PC5 até o Router1 (200.1.1.1), passou pelo Router0 no processo (1.0.0.1)
+e depois chegou ao destino final (200.1.0.100).
+
+
+3. Teste os domínios de rede: 
+• Abra o prompt de comandos no PC0 e verifique o IP (ipconfig) 
+• Teste a conectividade com o restante da rede com o ping (em broadcast) 
+ping 255.255.255.255 
+• Verifique se todas as máquinas das duas redes respondem.
+R: Essa estrutura de ping não funciona por padrão, como já dito e explicado nos excercícios anteriores, e como 
+o ping em broadcast "ping 200.1.0.255" ancança apenas a rede local do PC0 e não atravessa roteadores, não é possível
+que as duas redes respondam.
+
+• Abra o prompt de comandos no PC5 e verifique o IP (ipconfig) 
+• Teste a conectividade com o restante da rede com o ping (em broadcast) 
+ping 255.255.255.255 
+• Verifique se todas as máquinas das duas redes respondem.
+R: Essa estrutura de ping não funciona por padrão, como já dito e explicado nos excercícios anteriores, e como 
+o ping em broadcast "ping 200.1.1.255" ancança apenas a rede local do PC5 e não atravessa roteadores, não é possível
+que as duas redes respondam.
+
+
+4. Encerre o Cisco Packet Tracer e responda:  
+a) Qual a função do roteador?  
+R: Interligar diferentes redes e encaminhar pacotes de dados entre elas, direcionando-os pelos caminhos corretos.
+
+b) O que é um default gateway? 
+R: Também pode ser chamado de gateway padrão, e vai ser o roteador que os dispositivos de uma rede vão usar
+para conseguir se comunicar e alcançar outra rede.
+
+c) O que acontece se não declararmos o default gateway em um PC?
+R: Ele só conseguirá se comunicar com dispositivos da sua própria rede local, sem acesso às demais redes.
+ 
+d) Qual a principal desvantagem no uso do roteamento estático?  
+R: A necessidade de configuração manual das rotas, como foi feito nos exercícios, fazendo com que todas as rotas
+precisem ser reavaliadas caso haja alguma alteração na rede. 
+
+e) O que é domínio de difusão de uma rede? 
+R: O conjunto de dispositivos que recebem um pacote broadcast enviado por um dispositivo na rede. 
+Os Switches mantêm os dispositivos dentro do mesmo domínio de broadcast, já os Roteadores não retransmitem 
+broadcast para outras redes.
+
+f) Por que todas as máquinas das duas redes não respondem simultaneamente aos 
+“broadcasts”? 
+R: Porque os switches propagam broadcasts apenas dentro da mesma rede, e os roteadores bloqueiam o tráfego de 
+broadcast entre redes diferentes. Por isso, cada rede responde separadamente aos broadcasts, e não de forma 
+simultânea entre todas as máquinas.
+
+g) O que representa o TTL apresentado na resposta do comando “ping”? 
+R: Indica o número máximo de "saltos" (hops, como aparece no terminal) que um pacote pode fazer entre 
+roteadores antes de ser descartado.
+
+h) O que faz o comando “tracert”?
+R: Faz o rastreamento da rota entre o PC em que se está usando para enviar o comando e o endereço IP de destino,
+listando todos os dispositivos (roteadores) por onde o pacote passa durante o processo.
+
+i) Neste exercício, quantas redes estão configuradas?
+R: 3 redes no total. A conexão entre os Roteadores, a rede do Switch0 e a rede do Switch1.
+
+j) Quais os endereços de cada rede?
+Interface entre os Roteadores : 1.0.0.0/8
+Switch0 + PCs + Server0 : 200.1.0.0/24
+Switch1 + PCs + Server1 : 200.1.1.0/24
+

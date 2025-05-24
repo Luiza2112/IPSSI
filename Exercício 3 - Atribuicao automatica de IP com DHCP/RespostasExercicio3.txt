@@ -1,0 +1,53 @@
+1. Teste as conexões de rede: 
+• Abra o prompt de comandos no PC0 e verifique o IP (ipconfig) 
+• Teste a conectividade com o restante da rede com o ping (em broadcast) 
+Todas as máquinas respondem?
+
+Não, pois o Cisco Packet Tracer, por padrão e segurança, não responde aos pings enviado por broadcast (ping 255.255.255.255), 
+evitando loops e problemas com a rede. Então mesmo que as outras máquinas recebessem, não haveria resposta.
+No entanto, com a estrutura "ping 200.1.2.255", os hosts da mesma sub-rede responderam.
+
+
+2. Responda as seguintes questões: 
+
+a) Houve troca em algum endereço IP? Por quê?
+Sim. Após utilizar o comando "ipconfig /release", os PCs liberaram o IP que receberam do servidor DHCP, então
+o PC0 e o PC9 ficaram sem IP temporariamente. Como PC0 solicitou um novo IP primeiro (ipconfig /renew), recebeu
+o IP que estava disponível no pool, que acabou sendo o que era do PC9. No entanto, os IPs não necessecariamente são reatribuídos
+em uma ordem certa, mas sim pelo tempo de liberação dos IPs, e foi possível notar isso quando o PC9 não recebeu o antigo IP 
+do PC0 também, mas sim um novo endereço.
+
+b) O que faz o comando ipconfig com o parâmetro /release? 
+Libera o IP atual endereçado no computador, que foi obtido pelo DHCP.
+
+c) O que faz o comando ipconfig com o parâmetro /renew? 
+Solicita um novo endereço IP ao DHCP.
+
+d) Insira mais quatro PCs e conecte ao switch e os configure para DHCP. Os novos hosts da rede obtêm IP?
+Apenas um dos novos hosts obteve um IP, pois o DHCP no exercício foi configurado para suportar apenas 11 usuários (hosts).
+
+
+3. Libere os IPs de PC1, PC2, PC3 e PC4 (ipconfig /release em prompt de comandos). Execute, em prompt de comandos, 
+ipconfig /renew nos novos hosts (PC10 ~ PC13). Verifique se adquiriram IP. Volte aos hosts anteriores (PC1 ~ PC4) 
+e verifique se renovam o IP. Execute ipconfig /renew em cada um dos PCs indicados. Explique o ocorrido e a causa.
+Os novos PCs receberam os IPs disponíveis que foram liberados pelos PC1, PC2, PC3 e PC4. Porém, apenas o PC1 conseguiu renovar
+o IP, pois o número máximo de hosts configurado no DHCP (11) já foi alcançado.
+
+
+4. Para que serve o DHCP?
+Para atribuir automaticamente endereços IP e outras configurações de rede (como máscara de sub-rede, gateway e DNS, que podem 
+ser configurados no Server) aos dispositivos conectados a uma rede. Usando ele, não foi necessário atribuir manualmente o IP
+de cada host.
+
+
+5. Encerre o Cisco Packet Tracer e responda:  
+f) Dois DHCP-Servers podem atuar numa mesma rede?
+Sim, é possível.
+ 
+g) Se sim, qual a vantagem de se fazer isso? 
+Evitar que um servidor fique sobrecarregado em redes grandes e obtenha a ajuda de um segundo servidor para distribuir os IPs.
+Também pode ser possível configurar diferentes faixas de IP para diferentes hosts.
+
+h) Ainda em caso positivo, que cuidados devem ser tomados?  
+Cada servidor deve oferecer IPs de uma faixa diferente para não gerar conflitos e atribuições duplicadas, testar se as 
+conectividades estão funcionando corretamente e sem conflito, e, o que também pode ajudar em alguns casos, configurar Gateway e DNS.
